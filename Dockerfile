@@ -1,7 +1,7 @@
 # Build stage
-FROM redhat/ubi9:latest as builder
+FROM registry.access.redhat.com/ubi9/ubi AS builder
 
-RUN dnf install -y gcc-c++ cmake make && dnf clean all
+RUN dnf install -y gcc-c++ libasan libubsan cmake make  && dnf clean all
 
 WORKDIR /app
 COPY . .

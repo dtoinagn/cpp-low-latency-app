@@ -15,3 +15,16 @@ Low-latency C++ Code Example that demonstrates:
 | Thread Affinity | Cache locality and CPU isolation                              |
 | Memory Pool     | Reuses buffers to avoid heap fragmentation and malloc latency |
 | Zero Copy       | Passes raw pointers around without copying                    |
+
+# Profiling Tools for C++
+
+Here are production-safe and widely-tools you can integrate:
+| Tool | Purpose | Works in Docker? |
+| ----------------------- | ---------------------------------------------- | ----------------------------- |
+| `perf` | CPU sampling, cache misses, call stacks | Yes (with `--privileged`) |
+| `valgrind` | Memory leaks, cache use, instruction count | Yes (slower) |
+| `gperftools` | High-performance CPU profiler (Google) | Yes |
+| `Callgrind/KCacheGrind` | Function-level call graph | Yes (offline visualization) |
+| `clang sanitizer` | Detect UB, race, memory issues at compile-time | Yes |
+
+As a prevention, we can use sanitizers at compile time to capture memory bugs or undefined behavior with readable diagnostics. Add the following to `CMakeLists.txt`:
