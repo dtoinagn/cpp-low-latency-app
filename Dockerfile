@@ -1,7 +1,9 @@
 # Build stage
 FROM registry.access.redhat.com/ubi9/ubi AS builder
 
-RUN dnf install -y gcc-c++ libasan libubsan cmake make  && dnf clean all
+RUN dnf install -y gcc-c++ libasan libubsan cmake make  && \
+ dnf install -y clang valgrind && \
+ dnf clean all
 
 WORKDIR /app
 COPY . .

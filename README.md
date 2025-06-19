@@ -28,3 +28,26 @@ Here are production-safe and widely-tools you can integrate:
 | `clang sanitizer` | Detect UB, race, memory issues at compile-time | Yes |
 
 As a prevention, we can use sanitizers at compile time to capture memory bugs or undefined behavior with readable diagnostics. Add the following to `CMakeLists.txt`:
+
+# How to build
+
+## For Unix/Linux/macOS
+
+The build script (`build.sh`) accepts arguments for:
+
+- Build type (`Debug` or `Release`)
+- Compiler (`clang++` or `g++`)
+- Optional flags (like enabling sanitizers)
+- Usage Examples
+
+* Build with Clang + Sanitizers:
+
+```
+./build.sh -t Debug -c clang++ -s ON
+```
+
+- Build with GCC for Production:
+
+```
+./build.sh -t Release -c g++ -s OFF
+```
